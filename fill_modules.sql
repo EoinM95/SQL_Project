@@ -1,0 +1,14 @@
+INSERT INTO modules VALUES (0, 'Information Management');
+INSERT INTO modules VALUES (1, 'Computational Linguistics');
+INSERT INTO modules VALUES (2, 'Introduction to Programming');
+INSERT INTO modules VALUES (3, 'Introduction to Computing');
+INSERT INTO modules VALUES (4, 'Maths I');
+INSERT INTO modules VALUES (5, 'Algorithms');
+INSERT INTO modules VALUES (6, 'Discrete Maths');
+INSERT INTO modules VALUES (7, 'Introduction to Business');
+INSERT INTO modules VALUES (8, 'Introduction to Economics');
+INSERT INTO modules VALUES (9, 'Digital Logic');
+INSERT INTO modules VALUES (10, 'Computer Graphics');
+INSERT INTO modules VALUES (11, 'Computer Vision');
+INSERT INTO modules VALUES (12, 'Software Engineering');
+INSERT INTO modules VALUES (13, 'Maths II');

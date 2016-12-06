@@ -1,0 +1,10 @@
+INSERT INTO staff VALUES (0,'marrm','Marcus Marr',TO_DATE('30/01/84','dd/mm/yy'),'3 Country Road','Naas','Kildare','0861234567');
+INSERT INTO staff VALUES (1,'mcclainj','John McClain',TO_DATE('05/06/80','dd/mm/yy'),'20 Dublin Road','Malahide','Dublin','0861234567');
+INSERT INTO staff VALUES (2,'bankss','Samantha Banks',TO_DATE('10/02/66','dd/mm/yy'),'55 Davis  Street','Drogheda','Louth','0861234567');
+INSERT INTO staff VALUES (3,'byrned','Dan Byrne',TO_DATE('09/04/77','dd/mm/yy'),'122 Station Road','Raheny','Dublin','0861234567');
+INSERT INTO staff VALUES (4,'brehenyc','Ciara Breheny',TO_DATE('18/07/88','dd/mm/yy'),'67 Carrick Street','Sutton','Dublin','0861234567');
+INSERT INTO staff VALUES (5,'ripleye','Ellen Ripley',TO_DATE('03/09/82','dd/mm/yy'),'14 Doyle Street','Killester','Dublin','0861234567');
+INSERT INTO staff VALUES (6,'paigea','Amanda Paige',TO_DATE('07/03/72','dd/mm/yy'),'22 Old Road','Ratoath','Meath','0861234567');
+INSERT INTO staff VALUES (7,'conwaya','Alan Conway',TO_DATE('22/08/85','dd/mm/yy'),'92 Aran Drive','Phibsborough','Dublin','0861234567');
+INSERT INTO staff VALUES (8,'ryelands','Susan Ryeland',TO_DATE('13/11/82','dd/mm/yy'),'19 Ailesbury Avenue','Ballsbridge','Dublin','0861234567');
+INSERT INTO staff VALUES (9,'bishopw','Walter Bishop',TO_DATE('17/06/83','dd/mm/yy'),'10 Seabury Road','Bray','Wicklow','0861234567');
