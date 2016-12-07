@@ -23,3 +23,5 @@ BEGIN
   END loop;
 END;
 /
+
+/*CREATE OR REPLACE PROCEDURE add_grades()*/
