@@ -1,17 +1,13 @@
 CREATE type array as table of NUMBER;
 
-CREATE OR REPLACE PROCEDURE advance_students(ids IN array)
+CREATE OR REPLACE PROCEDURE advance_students(id, current_year)
 AS
 DECLARE
-  next_id NUMBER;
-  current_year CHAR(2);
   next_year CHAR(2);
 BEGIN
-  for i in 1..ids.count loop
-    next_id := ids(i)
     SELECT year INTO current_year
     FROM students
-    WHERE student_id = next_id;
+    WHERE id = next_id;
 
     CASE current_year
       WHEN current_year = 'JF' THEN next_year = 'SF';
@@ -23,5 +19,3 @@ BEGIN
   END loop;
 END;
 /
-
-/*CREATE OR REPLACE PROCEDURE add_grades()*/
