@@ -1,5 +1,3 @@
-CREATE type array as table of NUMBER;
-
 CREATE OR REPLACE PROCEDURE advance_students(id, current_year)
 AS
 DECLARE

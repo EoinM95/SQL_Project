@@ -11,9 +11,11 @@ DECLARE
 BEGIN
   student_id := NEW.student_id;
   no_of_modules := 0;
-  SELECT count(*) into null_values
-  from students_taking_modules where id = students_taking_modules.student_id
-  AND grade IS NULL;
+  EXECUTE IMMEDIATE
+  check_nulls = 'SELECT count(*)
+  from students_taking_modules where student_id = :id
+  AND grade IS NULL'
+  EXECUTE IMMEDIATE check_nulls USING id INTO null_values;
   if null_values = 0
   then
     for query_result IN (SELECT * from students_taking_modules
