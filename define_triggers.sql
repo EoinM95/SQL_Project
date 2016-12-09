@@ -8,11 +8,12 @@ DECLARE
   final_grade NUMBER;
   null_values NUMBER;
   current_year CHAR(2);
+  check_nulls VARCHAR(200);
 BEGIN
   student_id := NEW.student_id;
   no_of_modules := 0;
   EXECUTE IMMEDIATE
-  check_nulls = 'SELECT count(*)
+  check_nulls := 'SELECT count(*)
   from students_taking_modules where student_id = :id
   AND grade IS NULL'
   EXECUTE IMMEDIATE check_nulls USING id INTO null_values;

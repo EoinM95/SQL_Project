@@ -3,7 +3,6 @@ INSERT INTO teaching VALUES (7,1);
 INSERT INTO teaching VALUES (5,6);
 INSERT INTO teaching VALUES (3,10);
 INSERT INTO teaching VALUES (1,11);
-INSERT INTO teaching VALUES (7,1);
 INSERT INTO teaching VALUES (6,10);
 INSERT INTO teaching VALUES (6,1);
 INSERT INTO teaching VALUES (9,10);
