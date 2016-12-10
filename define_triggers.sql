@@ -47,9 +47,9 @@ END;
 /
 
 CREATE OR REPLACE TRIGGER check_graduated AFTER
-UPDATE OF year ON students
+UPDATE OF current_year ON students
 BEGIN
-  DELETE * FROM students WHERE year = 'SS'
+  DELETE * FROM students WHERE current_year = 'SS'
 END;
 /
 show errors;
