@@ -18,3 +18,18 @@ BEGIN
 END advance_student;
 /
 show errors;
+
+CREATE OR REPLACE procedure show_student_classes(
+    student_id NUMBER
+)
+as
+  show_classes VARCHAR2(400);
+begin
+  show_classes := 'SELECT  start_time,day_of_week,location,term, classes.module_id
+		FROM classes,students_taking_modules
+     	WHERE classes.module_id = students_taking_modules.module_id
+		AND students_taking_modules.student_id = :1';
+  EXECUTE IMMEDIATE show_classes using student_id;
+end create_student_classes_view;
+/
+show errors;
