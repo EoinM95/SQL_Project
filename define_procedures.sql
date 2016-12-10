@@ -30,6 +30,6 @@ begin
      	WHERE classes.module_id = students_taking_modules.module_id
 		AND students_taking_modules.student_id = :1';
   EXECUTE IMMEDIATE show_classes using student_id;
-end create_student_classes_view;
+end show_student_classes;
 /
 show errors;
