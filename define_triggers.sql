@@ -2,12 +2,12 @@ CREATE OR REPLACE TRIGGER check_can_add_year_grade AFTER
 INSERT OR UPDATE OF grade ON students_taking_modules
 FOR EACH ROW
 DECLARE
-  id NUMBER;
+  id students.student_id%TYPE;
   no_of_modules NUMBER;
   sum_of_grades NUMBER;
   final_grade NUMBER;
   null_values NUMBER;
-  current_year CHAR(2);
+  current_year students.current_year%TYPE;
   check_nulls VARCHAR2(200);
   create_cursor VARCHAR2(200);
   query_result students_taking_modules%ROWTYPE;

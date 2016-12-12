@@ -4,7 +4,7 @@
 
 CREATE OR REPLACE PROCEDURE advance_student(id NUMBER, year_code CHAR)
 AS
-	next_year CHAR(2);
+	next_year students.current_year%TYPE;
 	update_statement VARCHAR(500);
 BEGIN
     CASE year_code
@@ -13,14 +13,14 @@ BEGIN
       WHEN 'JS' THEN next_year := 'SS';
 	  ELSE next_year := year_code ;
     END CASE;
-	update_statement := 'UPDATE students SET current_year = :1 WHERE student_id = :2';
+		update_statement := 'UPDATE students SET current_year = :1 WHERE student_id = :2';
     EXECUTE IMMEDIATE update_statement using next_year, id;
 END advance_student;
 /
 show errors;
 
 CREATE OR REPLACE procedure show_student_classes(
-    student_id NUMBER
+    student_id students.student_id%TYPE
 )
 as
   show_classes VARCHAR2(400);
