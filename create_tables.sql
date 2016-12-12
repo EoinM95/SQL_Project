@@ -1,6 +1,4 @@
-/*
-	Checked and working
-*/
+
 CREATE TABLE courses(
 	course_id NUMBER NOT NULL,
 	course_title VARCHAR2(50) NOT NULL,
@@ -52,16 +50,6 @@ CREATE TABLE year_grades(
 	REFERENCES students,
 	CHECK(year_code IN ('JF','SF','JS','SS'))
 );
-
-/*CREATE TABLE modules_in_course(
-	course_id NUMBER NOT NULL,
-	module_id CHAR(5) NOT NULL,
-	PRIMARY KEY(course_id, module_id),
-	FOREIGN KEY(course_id)
-	REFERENCES courses,
-	FOREIGN KEY(module_id)
-	REFERENCES modules
-);*/
 
 CREATE TABLE staff(
 	staff_id NUMBER NOT NULL,
