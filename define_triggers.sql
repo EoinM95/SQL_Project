@@ -1,7 +1,6 @@
 CREATE OR REPLACE TRIGGER check_can_add_year_grade AFTER
-INSERT OR UPDATE OF grades ON students_taking_modules
+INSERT OR UPDATE OF grade ON students_taking_modules
 FOR EACH ROW
-WHEN (NEW.grade IS NOT NULL)
 DECLARE
   id NUMBER;
   no_of_modules NUMBER;
@@ -17,12 +16,12 @@ DECLARE
   select_current_year VARCHAR2(200);
   insert_year_grade VARCHAR2(200);
 BEGIN
-  student_id := NEW.student_id;
+  id := :NEW.student_id;
   no_of_modules := 0;
   check_nulls := 'SELECT count(*)
   from students_taking_modules where student_id = :id
-  AND grade IS NULL'
-  EXECUTE IMMEDIATE check_nulls USING id INTO null_values;
+  AND grade IS NULL';
+  EXECUTE IMMEDIATE check_nulls INTO null_values USING id;
   if null_values = 0
   then
     OPEN student_cursor FOR 'SELECT * from students_taking_modules
@@ -31,26 +30,27 @@ BEGIN
     loop
         fetch student_cursor into query_result;
         exit when student_cursor%NOTFOUND;
-        number_of_modules := number_of_modules + 1;
+        no_of_modules := no_of_modules + 1;
         sum_of_grades := query_result.grade + sum_of_grades;
     end loop;
     close student_cursor;
-    final_grade := sum_of_grades/number_of_modules;
+    final_grade := sum_of_grades/no_of_modules;
     select_current_year := 'SELECT year
     FROM students
     WHERE student_id = :id';
-    EXECUTE IMMEDIATE select_current_year USING id INTO current_year;
+    EXECUTE IMMEDIATE select_current_year  INTO current_year USING id;
     insert_year_grade := 'INSERT into year_grades VALUES (:id, :year, :grade)';
     EXECUTE IMMEDIATE insert_year_grade using id, current_year, final_grade;
-    if final_grade >= 40 then advance_student(id) end if;
+    if final_grade >= 40 then advance_student(id, current_year); end if;
   end if;
 END;
 /
+show errors;
 
 CREATE OR REPLACE TRIGGER check_graduated AFTER
 UPDATE OF current_year ON students
 BEGIN
-  DELETE * FROM students WHERE current_year = 'SS'
+  DELETE FROM students WHERE current_year = 'SS';
 END;
 /
 show errors;
