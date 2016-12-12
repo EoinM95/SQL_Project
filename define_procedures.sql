@@ -24,12 +24,20 @@ CREATE OR REPLACE procedure show_student_classes(
 )
 as
   show_classes VARCHAR2(400);
+	TYPE CURSOR_TYPE IS REF CURSOR;
+  classes_cursor CURSOR_TYPE;
 begin
   show_classes := 'SELECT  start_time,day_of_week,location,term, classes.module_id
 		FROM classes,students_taking_modules
      	WHERE classes.module_id = students_taking_modules.module_id
 		AND students_taking_modules.student_id = :1';
-  EXECUTE IMMEDIATE show_classes using student_id;
+  OPEN classes_cursor FOR show_classes using student_id;
+	loop
+	    fetch class_record into start_time,day_of_week,location,term, module_id;
+			exit when class_record%NOTFOUND;
+			dbms_output.putline('start_time ' || start_time || ' day_of_week ' || day_of_week || ' location ' || location || ' term ' || term || ' module_id ' || module_id);
+	end loop;
+	close classes_cursor;
 end show_student_classes;
 /
 show errors;

@@ -34,6 +34,7 @@ BEGIN
         number_of_modules := number_of_modules + 1;
         sum_of_grades := query_result.grade + sum_of_grades;
     end loop;
+    close student_cursor;
     final_grade := sum_of_grades/number_of_modules;
     select_current_year := 'SELECT year
     FROM students
