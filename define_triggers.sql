@@ -44,13 +44,15 @@ BEGIN
     if final_grade >= 40 then advance_student(id, current_year); end if;
   end if;
 END;
+run;
 /
 show errors;
 
 CREATE OR REPLACE TRIGGER check_graduated AFTER
 UPDATE OF current_year ON students
 BEGIN
-  DELETE FROM students WHERE current_year = 'SS';
+  DELETE FROM students WHERE current_year = 'GR';
 END;
+run;
 /
 show errors;

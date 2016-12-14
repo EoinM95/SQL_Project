@@ -1,7 +1,3 @@
-/*
-	Checked and working
-*/
-
 CREATE OR REPLACE PROCEDURE advance_student(id NUMBER, year_code CHAR)
 AS
 	next_year students.current_year%TYPE;
@@ -11,7 +7,7 @@ BEGIN
       WHEN 'JF' THEN next_year := 'SF';
       WHEN 'SF' THEN next_year := 'JS';
       WHEN 'JS' THEN next_year := 'SS';
-	  ELSE next_year := year_code ;
+	  ELSE next_year := 'GR' ;
     END CASE;
 		update_statement := 'UPDATE students SET current_year = :1 WHERE student_id = :2';
     EXECUTE IMMEDIATE update_statement using next_year, id;
@@ -29,11 +25,10 @@ as
   class_record classes%ROWTYPE;
   start_time classes.start_time%type;
   day_of_week classes.day_of_week%type;
-  location classes.location%type; 
-  term classes.term%type; 
+  location classes.location%type;
+  term classes.term%type;
   module_id classes.module_id%type;
 begin
-  dbms_output.put_line('Hello world');
   show_classes := 'SELECT  start_time,day_of_week,location,term, classes.module_id
 		FROM classes,students_taking_modules
      	WHERE classes.module_id = students_taking_modules.module_id

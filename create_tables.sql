@@ -19,8 +19,9 @@ CREATE TABLE students(
 	PRIMARY KEY(student_id),
 	UNIQUE(username),
 	FOREIGN KEY(course_id)
-	REFERENCES courses,
-	CHECK(current_year IN ('JF','SF','JS','SS'))
+	REFERENCES courses
+	ON DELETE CASCADE,
+	CHECK(current_year IN ('JF','SF','JS','SS', 'GR'))
 );
 
 CREATE TABLE modules(
@@ -35,20 +36,24 @@ CREATE TABLE students_taking_modules(
 	grade NUMBER,
 	PRIMARY KEY(student_id,module_id),
 	FOREIGN KEY(student_id)
-	REFERENCES students,
+	REFERENCES students
+	ON DELETE CASCADE,
 	FOREIGN KEY(module_id)
-	REFERENCES modules,
+	REFERENCES modules
+	ON DELETE CASCADE,
 	CHECK(grade >= 0 AND grade <= 100)
 );
 
 CREATE TABLE year_grades(
 	student_id NUMBER NOT NULL,
 	year_code CHAR(2) NOT NULL,
-	grade NUMBER,
+	grade NUMBER NOT NULL,
 	PRIMARY KEY(student_id, year_code),
 	FOREIGN KEY(student_id)
-	REFERENCES students,
-	CHECK(year_code IN ('JF','SF','JS','SS'))
+	REFERENCES students
+	ON DELETE CASCADE,
+	CHECK(year_code IN ('JF','SF','JS','SS')),
+	CHECK(grade >= 0 AND grade <= 100)
 );
 
 CREATE TABLE staff(
@@ -69,9 +74,11 @@ CREATE TABLE teaching(
 	module_id CHAR(5) NOT NULL,
 	PRIMARY KEY(staff_id, module_id),
 	FOREIGN KEY(staff_id)
-	REFERENCES staff,
+	REFERENCES staff
+	ON DELETE CASCADE,
 	FOREIGN KEY(module_id)
 	REFERENCES modules
+	ON DELETE CASCADE
 );
 
 CREATE TABLE classes(
@@ -83,7 +90,9 @@ CREATE TABLE classes(
 	module_id CHAR(5) NOT NULL,
 	PRIMARY KEY(class_id),
 	FOREIGN KEY(module_id)
-	REFERENCES modules,
+	REFERENCES modules
+	ON DELETE CASCADE,
 	CHECK(location IN ('LB01','LB04','LB08','LB11')),
-	CHECK(term IN ('MT', 'HT'))
+	CHECK(term IN ('MT', 'HT')),
+	CHECK(day_of_week IN ('MON','TUE','WED','THU','FRI'))
 );

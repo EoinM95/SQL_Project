@@ -4,15 +4,20 @@ grant select to student on modules;
 grant execute on show_student_classes;
 
 CREATE ROLE lecturer;
+grant select to lecturer on classes;
 grant select to lecturer on modules;
 
 CREATE ROLE admin;
 grant student to admin;
 grant all to admin on staff;
-grant all to admin on staff_classes;
+grant all to admin on students;
 grant execute on advance_student;
 grant all to admin on year_grades;
 grant all to admin on students_taking_modules;
+grant all to admin on modules;
+grant all to admin on classes;
+grant all to admin on courses;
+grant all to admin on teaching;
 
 CREATE ROLE lecturer0;
 grant lecturer to lecturer0;
